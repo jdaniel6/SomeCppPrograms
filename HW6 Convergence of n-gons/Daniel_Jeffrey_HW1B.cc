@@ -29,7 +29,6 @@ double getNextRadius(double currentRadius, double numberOfSides){
 }
 
 int main(){
-    //initPi();
     double currentRadius = 1;
     int numberOfSides = 3;
     int powerOfTen = 10;
