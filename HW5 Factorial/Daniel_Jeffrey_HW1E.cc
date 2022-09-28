@@ -2,8 +2,8 @@
  * @file Daniel_Jeffrey_HW1E.cc
  * @author Jeffrey Daniel (jdaniel6@stevens.edu)
  * @brief A program to calculate Factorial of a number
- * @version 0.1
- * @date 2022-09-13
+ * @version 0.2
+ * @date 2022-09-27
  * 
  * @copyright Copyright (c) 2022
  * 
@@ -13,11 +13,9 @@
 #include <iostream>
 #include <cmath>
 
-typedef long long int BigInteger;
-
 using namespace std;
 
-BigInteger fact(BigInteger n){
+long double fact(long double n){
     if(n == 1)
         return n;
     else   
@@ -26,7 +24,7 @@ BigInteger fact(BigInteger n){
 
 int main(){
     double_t dummyInput = 0;
-    BigInteger input = 0;
+    long double input = 0;
     cout << "Enter a positive integer:" << endl;
     while(true){
         cin >> dummyInput;
@@ -37,7 +35,7 @@ int main(){
             cout << "\n" << "NO! Enter a positive INTEGER:" << endl;
         }
         else {
-            input = (BigInteger)dummyInput;
+            input = (long double)dummyInput;
             break;
         }
     }

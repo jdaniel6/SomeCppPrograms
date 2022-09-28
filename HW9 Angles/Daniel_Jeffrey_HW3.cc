@@ -2,12 +2,20 @@
  * @file Daniel_Jeffrey_HW3.cc
  * @author Jeffrey Daniel (jdaniel6@stevens.edu)
  * @brief A program to compute sums of squares, and to calculate angles of right triangles
- * @version 0.1
- * @date 2022-09-22
+ * @version 0.2
+ * @date 2022-09-27
  * 
  * @copyright Copyright (c) 2022
  * 
  */
+
+#if(__cplusplus == 202002L)
+    double pi = std::numbers::pi;
+    #pragma message("using C++20")
+#else
+    double pi = 3.141592653589793238462;
+    #pragma message("Using pre-C++20\n")
+#endif
 
 //import libraries
 #include <iostream>
@@ -61,7 +69,7 @@ int main(){
     double ang = angle(3,4);
     cout << ang << "\n";
 
-    double deg = 0; //convert ang to degrees
+    double deg = (ang * 180.0)/pi; //convert ang to degrees
 
     double r = 5; //find a way to improve the ang 
 
