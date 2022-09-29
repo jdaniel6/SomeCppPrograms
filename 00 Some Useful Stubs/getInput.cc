@@ -17,6 +17,7 @@
 
 using namespace std;
 
+//START
 double getInput(){
     double input = 0;
     cout << "Enter a positive integer:" << endl;
@@ -33,6 +34,7 @@ double getInput(){
         }
     }
 }
+//END
 
 int main(){
     double input = getInput();
