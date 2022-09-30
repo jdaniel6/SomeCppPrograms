@@ -20,7 +20,7 @@ using namespace std;
     double pi = std::numbers::pi;
     #pragma message("using C++20")
 #else
-    double pi = 3.141592653589793238462;
+    constexpr double pi = 3.141592653589793238462;
     #pragma message("Using pre-C++20\n")
 #endif
 

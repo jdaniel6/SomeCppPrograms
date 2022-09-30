@@ -18,7 +18,7 @@ using namespace std;
 
 //ULL MAX = 18446744073709551615 ffffffffffffffff
 class BigInteger{
-    friend std::ostream &operator<<(std::ostream &os, BigInteger num);
+    friend std::ostream &operator<<(std::ostream &os, const BigInteger &num);
 
     private:
         string NUMBER;
@@ -30,10 +30,10 @@ class BigInteger{
         BigInteger(){
             this->NUMBER.push_back('0');
         }
-        BigInteger(string number){
+        BigInteger(const string &number){
             this->NUMBER = number;
         }
-        BigInteger(unsigned long long number){
+        BigInteger(uint64_t number){
             this->NUMBER = to_string(number);
         }
         BigInteger(double number){
@@ -42,16 +42,17 @@ class BigInteger{
             // zeros and ones function?
             this->NUMBER = to_string(floor(number));
         }
-        BigInteger operator+(BigInteger &operand2){
+        BigInteger operator+(const BigInteger &operand2) const{
+            //const BigInteger* this;
             if(this->NUMBER.length() > operand2.NUMBER.length()){
-                pad(operand2, this->NUMBER.length())
+                //pad(operand2, this->NUMBER.length())
             }
             
         }
 };
 
 std::ostream &operator<<(std::ostream &os, BigInteger num){
-    return os << num << endl;
+    //return os << num << endl;
 }
 
 std::istream &operator>>(std::istream &is, BigInteger num){
