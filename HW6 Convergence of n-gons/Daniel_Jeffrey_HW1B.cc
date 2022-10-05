@@ -21,7 +21,7 @@ using namespace std;
     #pragma message("using C++20")
 #else
     constexpr double pi = 3.141592653589793238462;
-    #pragma message("Using pre-C++20\n")
+    #pragma message("Using pre-C++20")
 #endif
 
 double getNextRadius(double currentRadius, double numberOfSides){

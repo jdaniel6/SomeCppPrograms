@@ -15,7 +15,7 @@
     #pragma message("using C++20")
 #else
     long double pi = 3.14159265358979323846264338327950288419716939937510;
-    #pragma message("Using pre-C++20\n")
+    #pragma message("Using pre-C++20")
 #endif
 //END
 
