@@ -34,7 +34,7 @@ class Shape{
         Shape(){}
         Shape(double x, double y) : centre_x(x), centre_y(y) {}
         Shape(double x, double y, double fill_r, double fill_g, double fill_b) : centre_x(x), centre_y(y), fill_r(fill_r), fill_g(fill_g), fill_b(fill_b) {}
-        virtual string print() = 0;
+        virtual void print(ostream &fileToOutputTo) = 0;
         virtual double area() = 0;
         virtual double perimeter() = 0;
 };
@@ -57,12 +57,12 @@ class Circle : public Shape{
             cout << "Circle found centred at <" << centre_x << ", " << centre_y << ">, with a radius of " << radius << " units." << endl;
             cout << "Circle is filled with a color whose RGB is given by <" << fill_r << ", " << fill_g << ", " << fill_b << ">." << endl;
         }
-        string print() override{
+        void print(ostream &fileToOutputTo) override{
             ostringstream os;
             os << "%Circle\n";
             os << centre_x << " " << centre_y << " " << radius << " 0 360 arc\n";
             os << fill_r << " " << fill_g << " " << fill_b << " setrgbcolor fill\n\n";
-            return os.str();
+            fileToOutputTo << os.str();
         }
         double area() override{
             return (pi * radius * radius);
@@ -90,12 +90,12 @@ class Rect : public Shape{
             cout << "Rectangle found with base vertex at <" << centre_x << ", " << centre_y << ">, with a base length of " << length << " and height of " << height << " units." << endl;
             cout << "Rectangle is filled with a color whose RGB is given by <" << fill_r << ", " << fill_g << ", " << fill_b << ">." << endl;
         }
-        string print() override{
+        void print(ostream &fileToOutputTo) override{
             ostringstream os;
             os << "%Rectangle\n";
             os << centre_x << " " << centre_y << " moveto " << (centre_x + length) << " " << centre_y << " lineto " << (centre_x + length) << " " << (centre_y + height) << " lineto " << centre_x << " " << (centre_y + height) << " lineto closepath\n";
             os << fill_r << " " << fill_g << " " << fill_b << " setrgbcolor fill\n\n";
-            return os.str();
+            fileToOutputTo << os.str();
         }
         double area() override{
             return (length * height);
@@ -130,12 +130,12 @@ class Triangle : public Shape{
             cout << "Triangle found at <(" << centre_x << ", " << centre_y << "), (" << x2 << ", " << y2 << "), (" << x3 << ", " << y3 << ")>." << endl;
             cout << "Triangle is filled with a color whose RGB is given by <" << fill_r << ", " << fill_g << ", " << fill_b << ">." << endl;
         }
-        string print() override{
+        void print(ostream &fileToOutputTo) override{
             ostringstream os;
             os << "%Triangle\n";
             os << centre_x << " " << centre_y << " moveto " << x2 << " " << y2 << " lineto " << x3 << " " << y3 << " lineto closepath\n";
             os << fill_r << " " << fill_g << " " << fill_b << " setrgbcolor fill\n\n";
-            return os.str();
+            fileToOutputTo << os.str();
         }
         double area() override{
             return abs(0.5 * ((centre_x * (y2 - y3)) + (x2 * (y3 - centre_y)) + (x3 * (centre_y - y2))));
@@ -156,7 +156,7 @@ int main(){
     file << "%!PS\n\n";
 
     for(auto s : shapes){
-        file << s -> print();
+        s -> print(file);
     }
     for(auto s : shapes){
         delete s;
