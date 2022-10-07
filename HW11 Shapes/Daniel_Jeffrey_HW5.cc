@@ -34,7 +34,8 @@ class Shape{
         Shape(){}
         Shape(double x, double y) : centre_x(x), centre_y(y) {}
         Shape(double x, double y, double fill_r, double fill_g, double fill_b) : centre_x(x), centre_y(y), fill_r(fill_r), fill_g(fill_g), fill_b(fill_b) {}
-        virtual void print(ostream &fileToOutputTo) = 0;
+        virtual void print(ostream &fileToOutputTo) const = 0; 
+        virtual void display() const = 0;
         virtual double area() = 0;
         virtual double perimeter() = 0;
 };
@@ -53,16 +54,14 @@ class Circle : public Shape{
         Circle(double centre_x, double centre_y, double radius, double fill_r, double fill_g, double fill_b) : Shape(centre_x, centre_y, fill_r, fill_g, fill_b), radius(radius) {
             //circle with RGB parameters
         }
-        void display(){
+        void display() const override{ 
             cout << "Circle found centred at <" << centre_x << ", " << centre_y << ">, with a radius of " << radius << " units." << endl;
             cout << "Circle is filled with a color whose RGB is given by <" << fill_r << ", " << fill_g << ", " << fill_b << ">." << endl;
         }
-        void print(ostream &fileToOutputTo) override{
-            ostringstream os;
-            os << "%Circle\n";
+        void print(ostream &os) const override{            
+            os << "%Circle\n"; //make a debug flag
             os << centre_x << " " << centre_y << " " << radius << " 0 360 arc\n";
             os << fill_r << " " << fill_g << " " << fill_b << " setrgbcolor fill\n\n";
-            fileToOutputTo << os.str();
         }
         double area() override{
             return (pi * radius * radius);
@@ -80,22 +79,20 @@ class Rect : public Shape{
             centre_x = centre_y = length = height = fill_r = fill_g = fill_b = 0.0;
         }
         Rect(double centre_x, double centre_y, double length, double height) : Shape(centre_x, centre_y), length(length), height(height) {
-            //circle without RGB parameters
+            //rect without RGB parameters
             fill_r = fill_g = fill_b = 0.0;
         }
         Rect(double centre_x, double centre_y, double length, double height, double fill_r, double fill_g, double fill_b) : Shape(centre_x, centre_y, fill_r, fill_g, fill_b), length(length), height(height) {
-            //circle with RGB parameters
+            //rect with RGB parameters
         }
-        void display(){
+        void display() const override{
             cout << "Rectangle found with base vertex at <" << centre_x << ", " << centre_y << ">, with a base length of " << length << " and height of " << height << " units." << endl;
             cout << "Rectangle is filled with a color whose RGB is given by <" << fill_r << ", " << fill_g << ", " << fill_b << ">." << endl;
         }
-        void print(ostream &fileToOutputTo) override{
-            ostringstream os;
+        void print(ostream &os) const override{
             os << "%Rectangle\n";
             os << centre_x << " " << centre_y << " moveto " << (centre_x + length) << " " << centre_y << " lineto " << (centre_x + length) << " " << (centre_y + height) << " lineto " << centre_x << " " << (centre_y + height) << " lineto closepath\n";
             os << fill_r << " " << fill_g << " " << fill_b << " setrgbcolor fill\n\n";
-            fileToOutputTo << os.str();
         }
         double area() override{
             return (length * height);
@@ -120,22 +117,20 @@ class Triangle : public Shape{
             centre_x = centre_y = x2 = y2 = x3 = y3 = fill_r = fill_g = fill_b = 0.0;
         }
         Triangle(double centre_x, double centre_y, double x2, double y2, double x3, double y3) : Shape(centre_x, centre_y), x2(x2), y2(y2), x3(x3), y3(y3) {
-            //circle without RGB parameters
+            //triangle without RGB parameters
             fill_r = fill_g = fill_b = 0.0;
         }
         Triangle(double centre_x, double centre_y, double x2, double y2, double x3, double y3, double fill_r, double fill_g, double fill_b) : Shape(centre_x, centre_y, fill_r, fill_g, fill_b), x2(x2), y2(y2), x3(x3), y3(y3) {
-            //circle with RGB parameters
+            //triangle with RGB parameters
         }
-        void display(){
+        void display() const override{
             cout << "Triangle found at <(" << centre_x << ", " << centre_y << "), (" << x2 << ", " << y2 << "), (" << x3 << ", " << y3 << ")>." << endl;
             cout << "Triangle is filled with a color whose RGB is given by <" << fill_r << ", " << fill_g << ", " << fill_b << ">." << endl;
         }
-        void print(ostream &fileToOutputTo) override{
-            ostringstream os;
+        void print(ostream &os) const override{
             os << "%Triangle\n";
             os << centre_x << " " << centre_y << " moveto " << x2 << " " << y2 << " lineto " << x3 << " " << y3 << " lineto closepath\n";
             os << fill_r << " " << fill_g << " " << fill_b << " setrgbcolor fill\n\n";
-            fileToOutputTo << os.str();
         }
         double area() override{
             return abs(0.5 * ((centre_x * (y2 - y3)) + (x2 * (y3 - centre_y)) + (x3 * (centre_y - y2))));
