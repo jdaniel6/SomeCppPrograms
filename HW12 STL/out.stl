@@ -1,9 +1,8 @@
-solid 
-
-facet normal 6.95269e-310	1.10778e-311	6.63124e-315
+solid unnamed triangle
+facet normal 0	1.4822e-323	6.95256e-310
 	outer loop
 		vertex 0	0	0
-		vertex 0	0	0
-		vertex 0	0	0
+		vertex 0	2	0
+		vertex 2	2	0
 	endloop
 endfacet

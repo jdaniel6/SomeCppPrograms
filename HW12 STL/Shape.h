@@ -1,10 +1,5 @@
-#if(__cplusplus == 202002L)
-    double pi = std::numbers::pi;
-    #pragma message("using C++20")
-#else
-    double pi = 3.141592653589793238462;
-    #pragma message("Using pre-C++20")
-#endif
+#ifndef _SHAPE_H_
+#define _SHAPE_H_
 
 //import libraries
 #include <iostream>
@@ -42,15 +37,7 @@ class Shape : public BaseTriangle{
         Shape(uint64_t num_of_base_triangles) : name(""), num_of_base_triangles(num_of_base_triangles) {}
         Shape(vector<BaseTriangle> base_triangles) : name(""), list_of_base_triangles(list_of_base_triangles), num_of_base_triangles(num_of_base_triangles) {}
         friend ostream &operator<< (ostream &os, Shape &s);
-        ostream &print(ostream &os, Shape &s);
+        ostream &print(ostream &os, Shape s);
 };
-ostream &operator<< (ostream &os, Shape &s){
-        uint64_t counter = 1;
-    for(const BaseTriangle bt : s.list_of_base_triangles){
-        os << "Base Triangle Number " << counter << "\n";
-        os << bt.x1 << "\t" << bt.y1 << "\t" << bt.z1 << "\n";
-        os << bt.x2 << "\t" << bt.y2 << "\t" << bt.z2 << "\n";
-        os << bt.x3 << "\t" << bt.y3 << "\t" << bt.z3 << "\n\n";
-    }
-    return os;
-}
+
+#endif

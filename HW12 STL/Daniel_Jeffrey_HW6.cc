@@ -9,7 +9,7 @@
  * 
  */
 
-#include "Shape.hh"
+#include "Shape.h"
 
 using namespace std;
 
@@ -24,6 +24,7 @@ class Triangle : public Shape{
             vector<BaseTriangle> temp;
             temp.push_back(BaseTriangle(x1, y1, x2, y2, x3, y3));
             this->list_of_base_triangles = temp;
+            this->name = "unnamed triangle";
         }
         //Triangle(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3) : x1(x1), y1(x1), z1(z1), x2(x2), y2(x2), z2(z2), x3(x3), y3(x3), z3(z3) {}
 };
@@ -36,6 +37,6 @@ int main(){
 
     ofstream file("out.stl", ios_base::app);
 
-    t.Shape::print(file, t);
+    t.print(file, t);
 }
 
