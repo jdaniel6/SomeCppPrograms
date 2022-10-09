@@ -1,0 +1,37 @@
+//class to write models of predefined shapes to a file
+class STL{
+    private:
+        string name;
+    public:
+        //constructors
+        STL(){
+            name = "shape";
+        }
+        STL(Shape s){
+            name = "shape";
+        }
+        friend ostream &operator<<(ostream &os, STL stl){
+
+        }
+};
+
+
+
+class Model : public Shape{
+    private:
+        string predefshape_name;
+    public:
+        Model(){
+            predefshape_name = "null figure";
+        }
+
+        friend ostream &operator<< (ostream &os, Model m){
+            os << "solid " << m.predefshape_name << "\n";
+            for(Triangle t : m){
+                os << "facet normal 0 0 0" << "\n";
+                os << "outer loop " << t.x1 << " " << t.x2 << " " << t.x3 << "\n";
+                os << "outer loop " << t.y1 << " " << t.y2 << " " << t.y3 << "\n";
+                os << "outer loop " << t.z1 << " " << t.z2 << " " << t.z3 << "\n";
+            }
+        }
+};
