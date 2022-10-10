@@ -11,8 +11,9 @@ ostream &Shape::print(ostream &os, Shape s) {
         os << "\t\t" << "vertex " << bt.x2 << "\t" << bt.y2 << "\t" << bt.z2 << "\n";
         os << "\t\t" << "vertex " << bt.x3 << "\t" << bt.y3 << "\t" << bt.z3 << "\n";
         os << "\t" << "endloop" << "\n";
+        os << "endfacet" << "\n";
     }
-    os << "endfacet";
+    os << "endsolid " << s.name << "\n";
     return os;
 }
 
@@ -23,6 +24,7 @@ ostream &operator<< (ostream &os, Shape &s){
         os << bt.x1 << "\t" << bt.y1 << "\t" << bt.z1 << "\n";
         os << bt.x2 << "\t" << bt.y2 << "\t" << bt.z2 << "\n";
         os << bt.x3 << "\t" << bt.y3 << "\t" << bt.z3 << "\n\n";
+        counter++;
     }
     return os;
 }
