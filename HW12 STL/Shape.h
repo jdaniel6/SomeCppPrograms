@@ -30,6 +30,13 @@ class Shape : public BaseTriangle{
         string name;
         vector<BaseTriangle> list_of_base_triangles;
         uint64_t num_of_base_triangles;
+    protected:
+        void quad(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3, double x4, double y4, double z4) {
+            //
+        }
+        void tri(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3) {
+            //
+        }
     public:
         Shape() : BaseTriangle(){
             name = "";
