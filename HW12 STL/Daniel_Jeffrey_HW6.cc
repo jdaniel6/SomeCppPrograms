@@ -18,12 +18,12 @@ class BaseTriangle{
             double s1y = y1 - y2;
             double s1z = z1 - z2;
 
-            double s2x = x2 - x3;
-            double s2y = y2 - y3;
-            double s2z = z2 - z3;
+            double s2x = x3 - x2;
+            double s2y = y3 - y2;
+            double s2z = z3 - z2;
 
             this->n1 = s1y * s2z - s1z * s2y;
-            this->n2 = s1x * s2z - s1z * s2x;
+            this->n2 = s1z * s2x - s1x * s2z;
             this->n3 = s1x * s2y - s1y * s2x;
         }
         

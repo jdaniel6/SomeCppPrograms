@@ -1,33 +1,33 @@
 solid cuboid
-facet normal 0	-0	20
+facet normal 0	0	-20
 	outer loop
 		vertex 0	0	6
 		vertex 4	4	6
 		vertex 4	4	6
-	endloop
-endfacet
-facet normal -0	0	20
-	outer loop
-		vertex 4	4	6
-		vertex 0	0	6
-		vertex 0	0	6
-	endloop
-endfacet
-facet normal -0	-0	-20
-	outer loop
-		vertex 0	0	0
-		vertex 4	4	0
-		vertex 4	4	0
 	endloop
 endfacet
 facet normal 0	0	-20
 	outer loop
+		vertex 4	4	6
+		vertex 0	0	6
+		vertex 0	0	6
+	endloop
+endfacet
+facet normal 0	0	20
+	outer loop
+		vertex 0	0	0
+		vertex 4	4	0
+		vertex 4	4	0
+	endloop
+endfacet
+facet normal 0	0	20
+	outer loop
 		vertex 4	4	0
 		vertex 0	0	0
 		vertex 0	0	0
 	endloop
 endfacet
-facet normal 0	24	-0
+facet normal 0	24	0
 	outer loop
 		vertex 0	0	0
 		vertex 4	4	6
@@ -41,14 +41,14 @@ facet normal 0	24	0
 		vertex 4	4	0
 	endloop
 endfacet
-facet normal 30	-0	0
+facet normal -30	0	0
 	outer loop
 		vertex 4	4	6
 		vertex 4	4	0
 		vertex 4	4	6
 	endloop
 endfacet
-facet normal 30	0	0
+facet normal -30	0	0
 	outer loop
 		vertex 4	4	0
 		vertex 4	4	6
@@ -62,21 +62,21 @@ facet normal 0	-24	0
 		vertex 4	4	6
 	endloop
 endfacet
-facet normal 0	-24	-0
+facet normal 0	-24	0
 	outer loop
 		vertex 0	0	6
 		vertex 4	4	0
 		vertex 0	0	0
 	endloop
 endfacet
-facet normal -30	0	0
+facet normal 30	0	0
 	outer loop
 		vertex 0	0	0
 		vertex 0	0	6
 		vertex 0	0	0
 	endloop
 endfacet
-facet normal -30	-0	0
+facet normal 30	0	0
 	outer loop
 		vertex 0	0	6
 		vertex 0	0	0
