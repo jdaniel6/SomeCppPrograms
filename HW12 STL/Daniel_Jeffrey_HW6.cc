@@ -13,7 +13,7 @@ class BaseTriangle{
         BaseTriangle(){
             x1 = x2 = x3 = y1 = y2 = y3 = z1 = z2 = z3 = 0;
         }
-        BaseTriangle(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3) : x1(x1), y1(x1), z1(z1), x2(x2), y2(x2), z2(z2), x3(x3), y3(x3), z3(z3) {
+        BaseTriangle(double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3, double z3) : x1(x1), y1(y1), z1(z1), x2(x2), y2(y2), z2(z2), x3(x3), y3(y3), z3(z3) {
             double s1x = x1 - x2;
             double s1y = y1 - y2;
             double s1z = z1 - z2;
@@ -63,19 +63,19 @@ class cube : public shape {
         cube(){
             length = breadth = height = 0;
         }
-        cube(double length, double height, double breadth) : length(length), breadth(breadth), height(height), name("cuboid"){
-            list_of_base_triangles.push_back(BaseTriangle(x, y+height, z+breadth, x+length, y, z+breadth, x+length, y+height, z+breadth));
-            list_of_base_triangles.push_back(BaseTriangle(x+length, y, z+breadth, x, y+height, z+breadth, x, y, z+breadth));
-            list_of_base_triangles.push_back(BaseTriangle(x, y, z, x+length, y+height, z, x+length, y, z));
-            list_of_base_triangles.push_back(BaseTriangle(x+length, y+height, z, x, y, z, x, y+height, z));
-            list_of_base_triangles.push_back(BaseTriangle(x, y, z, x+length, y, z+breadth, x, y, z+breadth));
-            list_of_base_triangles.push_back(BaseTriangle(x+length, y, z+breadth, x, y, z, x+length, y, z));
-            list_of_base_triangles.push_back(BaseTriangle(x+length, y, z+breadth, x+length, y+height, z, x+length, y+height, z+breadth));
-            list_of_base_triangles.push_back(BaseTriangle(x+length, y+height, z, x+length, y, z+breadth, x+length, y, z));
-            list_of_base_triangles.push_back(BaseTriangle(x+length, y+height, z, x, y+height, z+breadth,  x+length, y+height, z+breadth));
-            list_of_base_triangles.push_back(BaseTriangle(x, y+height, z+breadth, x+length, y+height, z, x, y+height, z));
-            list_of_base_triangles.push_back(BaseTriangle(x, y, z, x, y+height, z+breadth, x, y+height, z));
-            list_of_base_triangles.push_back(BaseTriangle(x, y+height, z+breadth, x, y, z, x, y, z+breadth));
+        cube(double length, double breadth, double height) : length(length), breadth(breadth), height(height), name("cuboid"){
+            list_of_base_triangles.push_back(BaseTriangle(x, y+breadth, z+height, x+length, y, z+height, x+length, y+breadth, z+height));
+            list_of_base_triangles.push_back(BaseTriangle(x+length, y, z+height, x, y+breadth, z+height, x, y, z+height));
+            list_of_base_triangles.push_back(BaseTriangle(x, y, z, x+length, y+breadth, z, x+length, y, z));
+            list_of_base_triangles.push_back(BaseTriangle(x+length, y+breadth, z, x, y, z, x, y+breadth, z));
+            list_of_base_triangles.push_back(BaseTriangle(x, y, z, x+length, y, z+height, x, y, z+height));
+            list_of_base_triangles.push_back(BaseTriangle(x+length, y, z+height, x, y, z, x+length, y, z));
+            list_of_base_triangles.push_back(BaseTriangle(x+length, y, z+height, x+length, y+breadth, z, x+length, y+breadth, z+height));
+            list_of_base_triangles.push_back(BaseTriangle(x+length, y+breadth, z, x+length, y, z+height, x+length, y, z));
+            list_of_base_triangles.push_back(BaseTriangle(x+length, y+breadth, z, x, y+breadth, z+height,  x+length, y+breadth, z+height));
+            list_of_base_triangles.push_back(BaseTriangle(x, y+breadth, z+height, x+length, y+breadth, z, x, y+breadth, z));
+            list_of_base_triangles.push_back(BaseTriangle(x, y, z, x, y+breadth, z+height, x, y+breadth, z));
+            list_of_base_triangles.push_back(BaseTriangle(x, y+breadth, z+height, x, y, z, x, y, z+height));
         }
         void print(ostream& os) const override{
             os << "solid " << name << "\n";
@@ -114,8 +114,10 @@ public:
     shapes.push_back(s);
   }
   void print() {
-    for (auto s : shapes)
-      s->print(file);
+    for (auto s : shapes){
+        s->print(file);
+    }
+
   }
 
 };
@@ -128,7 +130,7 @@ int main() {
 
   model m("test1.stl");
   // Don't do this: m.add(&c1);
-  m.add(new cube(4,5,6));
+  m.add(new cube(50, 50, 50));
   m.print();
   //m.add(new cylinder(10, 20));
 }
