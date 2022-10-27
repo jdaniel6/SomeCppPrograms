@@ -173,6 +173,6 @@ int main() {
   model m("test1.stl");
   // Don't do this: m.add(&c1);
   //m.add(new cube(4, 5, 6));  
-  m.add(new cylinder(10, 20));
+  m.add(new cylinder(50, 20));
   m.print();
 }
