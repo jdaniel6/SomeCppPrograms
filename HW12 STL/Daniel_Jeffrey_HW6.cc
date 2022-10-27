@@ -76,8 +76,8 @@ class cylinder : public shape {
             const double dtheta = (2 * pi)/num_of_facets; //angle of rotation
             for(uint16_t i = 1; i <= num_of_facets; i++){
                 double theta = dtheta * i;
-                side2x = side1x * cos(theta) - side1y * sin(theta);
-                side2y = side1x * sin(theta) + side1y * cos(theta);
+                side2x = r * cos(theta);
+                side2y = r * sin(theta);
                 side2z = z;
                 //bottom triangle
                 list_of_base_triangles.push_back(BaseTriangle(x, y, z, side1x, side1y, side1z, side2x, side2y, side2z));
