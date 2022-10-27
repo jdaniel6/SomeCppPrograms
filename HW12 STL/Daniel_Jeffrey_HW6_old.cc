@@ -1,5 +1,5 @@
 /**
- * @file Daniel_Jeffrey_HW6.cc
+ * @file Daniel_Jeffrey_HW6_old.cc
  * @author Jeffrey Daniel (jdaniel6@stevens.edu)
  * @brief A program to store STL objects and print STL files
  * @version 0.2

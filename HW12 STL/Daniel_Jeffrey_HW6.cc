@@ -1,3 +1,14 @@
+/**
+ * @file Daniel_Jeffrey_HW6.cc
+ * @author Jeffrey Daniel (jdaniel6@stevens.edu)
+ * @brief A program to store STL objects and print STL files
+ * @version 0.3
+ * @date 2022-10-26
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -73,7 +84,7 @@ class cylinder : public shape {
                 //middle rectangle (should be optimised in future)
                 list_of_base_triangles.push_back(BaseTriangle(side1x, side1y, side1z, side2x, side2y, side2z, side1x, side1y, side1z+h));
                 list_of_base_triangles.push_back(BaseTriangle(side1x, side1y, side1z+h, side2x, side2y, side2z+h, side2x, side2y, side2z));
-                //top triangle
+                //top triangle (need to make the triangles continuous!!)
                 list_of_base_triangles.push_back(BaseTriangle(x, y, z+h, side1x, side1y, side1z+h, side2x, side2y, side2z+h));
                 side1x = side2x;
                 side1y = side2y;
@@ -172,7 +183,7 @@ int main() {
 
   model m("test1.stl");
   // Don't do this: m.add(&c1);
-  //m.add(new cube(4, 5, 6));  
+  m.add(new cube(4, 5, 6));  
   m.add(new cylinder(10, 20));
   m.print();
 }
