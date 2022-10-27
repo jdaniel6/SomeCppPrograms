@@ -66,7 +66,7 @@ class cylinder : public shape {
             for(uint16_t i = 1; i <= 360; i++){
                 dtheta = (2 * pi *i)/360.0;
                 side2x = side1x * cos(dtheta) - side1y * sin(dtheta);
-                side2y = side1x * sin(dtheta) - side1z * cos(dtheta);
+                side2y = side1x * sin(dtheta) + side1y * cos(dtheta);
                 side2z = z;
                 //bottom triangle
                 list_of_base_triangles.push_back(BaseTriangle(x, y, z, side1x, side1y, side1z, side2x, side2y, side2z));
@@ -173,6 +173,6 @@ int main() {
   model m("test1.stl");
   // Don't do this: m.add(&c1);
   //m.add(new cube(4, 5, 6));  
-  m.add(new cylinder(50, 20));
+  m.add(new cylinder(10, 20));
   m.print();
 }
