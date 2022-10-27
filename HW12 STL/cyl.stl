@@ -1,0 +1,170 @@
+solid cylinder
+facet normal 0	0	-86.6025
+	outer loop
+		vertex 0	0	0
+		vertex 10	0	0
+		vertex 5	8.66025	0
+	endloop
+endfacet
+facet normal -173.205	-100	0
+	outer loop
+		vertex 10	0	0
+		vertex 5	8.66025	0
+		vertex 10	0	20
+	endloop
+endfacet
+facet normal 173.205	100	0
+	outer loop
+		vertex 10	0	20
+		vertex 5	8.66025	20
+		vertex 5	8.66025	0
+	endloop
+endfacet
+facet normal 0	0	-86.6025
+	outer loop
+		vertex 0	0	20
+		vertex 10	0	20
+		vertex 5	8.66025	20
+	endloop
+endfacet
+facet normal 0	0	-86.6025
+	outer loop
+		vertex 0	0	0
+		vertex 5	8.66025	0
+		vertex -10	3.55271e-15	0
+	endloop
+endfacet
+facet normal 173.205	-300	0
+	outer loop
+		vertex 5	8.66025	0
+		vertex -10	3.55271e-15	0
+		vertex 5	8.66025	20
+	endloop
+endfacet
+facet normal -173.205	300	0
+	outer loop
+		vertex 5	8.66025	20
+		vertex -10	3.55271e-15	20
+		vertex -10	3.55271e-15	0
+	endloop
+endfacet
+facet normal 0	0	-86.6025
+	outer loop
+		vertex 0	0	20
+		vertex 5	8.66025	20
+		vertex -10	3.55271e-15	20
+	endloop
+endfacet
+facet normal 0	0	-1.22461e-14
+	outer loop
+		vertex 0	0	0
+		vertex -10	3.55271e-15	0
+		vertex 10	-4.77732e-15	0
+	endloop
+endfacet
+facet normal 1.66601e-13	400	0
+	outer loop
+		vertex -10	3.55271e-15	0
+		vertex 10	-4.77732e-15	0
+		vertex -10	3.55271e-15	20
+	endloop
+endfacet
+facet normal -1.66601e-13	-400	-0
+	outer loop
+		vertex -10	3.55271e-15	20
+		vertex 10	-4.77732e-15	20
+		vertex 10	-4.77732e-15	0
+	endloop
+endfacet
+facet normal 0	0	-1.22461e-14
+	outer loop
+		vertex 0	0	20
+		vertex -10	3.55271e-15	20
+		vertex 10	-4.77732e-15	20
+	endloop
+endfacet
+facet normal 0	0	86.6025
+	outer loop
+		vertex 0	0	0
+		vertex 10	-4.77732e-15	0
+		vertex -5	-8.66025	0
+	endloop
+endfacet
+facet normal 173.205	-300	0
+	outer loop
+		vertex 10	-4.77732e-15	0
+		vertex -5	-8.66025	0
+		vertex 10	-4.77732e-15	20
+	endloop
+endfacet
+facet normal -173.205	300	0
+	outer loop
+		vertex 10	-4.77732e-15	20
+		vertex -5	-8.66025	20
+		vertex -5	-8.66025	0
+	endloop
+endfacet
+facet normal 0	0	86.6025
+	outer loop
+		vertex 0	0	20
+		vertex 10	-4.77732e-15	20
+		vertex -5	-8.66025	20
+	endloop
+endfacet
+facet normal 0	-0	86.6025
+	outer loop
+		vertex 0	0	0
+		vertex -5	-8.66025	0
+		vertex -10	1.68754e-14	0
+	endloop
+endfacet
+facet normal -173.205	-100	0
+	outer loop
+		vertex -5	-8.66025	0
+		vertex -10	1.68754e-14	0
+		vertex -5	-8.66025	20
+	endloop
+endfacet
+facet normal 173.205	100	0
+	outer loop
+		vertex -5	-8.66025	20
+		vertex -10	1.68754e-14	20
+		vertex -10	1.68754e-14	0
+	endloop
+endfacet
+facet normal 0	-0	86.6025
+	outer loop
+		vertex 0	0	20
+		vertex -5	-8.66025	20
+		vertex -10	1.68754e-14	20
+	endloop
+endfacet
+facet normal -0	0	2.44921e-14
+	outer loop
+		vertex 0	0	0
+		vertex -10	1.68754e-14	0
+		vertex -10	1.93246e-14	0
+	endloop
+endfacet
+facet normal -4.89843e-14	0	0
+	outer loop
+		vertex -10	1.68754e-14	0
+		vertex -10	1.93246e-14	0
+		vertex -10	1.68754e-14	20
+	endloop
+endfacet
+facet normal 4.89843e-14	0	0
+	outer loop
+		vertex -10	1.68754e-14	20
+		vertex -10	1.93246e-14	20
+		vertex -10	1.93246e-14	0
+	endloop
+endfacet
+facet normal -0	0	2.44921e-14
+	outer loop
+		vertex 0	0	20
+		vertex -10	1.68754e-14	20
+		vertex -10	1.93246e-14	20
+	endloop
+endfacet
+endsolid cylinder

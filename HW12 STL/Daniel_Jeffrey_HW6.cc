@@ -16,10 +16,10 @@
 using namespace std;
 
 #if(__cplusplus == 202002L)
-    long double pi = std::numbers::pi;
+    constexpr double pi = std::numbers::pi;
     #pragma message("using C++20")
 #else
-    long double pi = 3.14159265358979323846264338327950288419716939937510;
+    constexpr double pi = 3.14159265358979323846264338327950288419716939937510;
     #pragma message("Using pre-C++20")
 #endif
 
@@ -68,16 +68,16 @@ class cylinder : public shape {
         double r, h;
         string name;
     public:
-        cylinder(double rad, double height) : r(rad), h(height), name("cylinder"){
+        cylinder(double rad, double height, uint16_t num_of_facets = 6) : r(rad), h(height), name("cylinder"){
             double side1x = x + r;
             double side1y = y;
             double side1z = z;
             double side2x, side2y, side2z;
-            double dtheta = 0;  //angle of rotation
-            for(uint16_t i = 1; i <= 360; i++){
-                dtheta = (2 * pi *i)/360.0;
-                side2x = side1x * cos(dtheta) - side1y * sin(dtheta);
-                side2y = side1x * sin(dtheta) + side1y * cos(dtheta);
+            const double dtheta = (2 * pi)/num_of_facets; //angle of rotation
+            for(uint16_t i = 1; i <= num_of_facets; i++){
+                double theta = dtheta * i;
+                side2x = side1x * cos(theta) - side1y * sin(theta);
+                side2y = side1x * sin(theta) + side1y * cos(theta);
                 side2z = z;
                 //bottom triangle
                 list_of_base_triangles.push_back(BaseTriangle(x, y, z, side1x, side1y, side1z, side2x, side2y, side2z));
@@ -153,7 +153,7 @@ private:
   vector<shape*> shapes;
   ofstream file;
 public:
-  model(const char filename[]) : file(filename, std::ios_base::app) {
+  model(const char filename[]) : file(filename) {
 //    file.open(filename);
     
   }
@@ -178,12 +178,14 @@ public:
 int main() {
   cube c1(1,2,3);
   cout << c1;
-  cylinder c2(10, 30);
+  cylinder c2(10, 30, 12);
   cout << c2;
 
-  model m("test1.stl");
+  model m1("cube.stl");
+  model m2("cyl.stl");
   // Don't do this: m.add(&c1);
-  m.add(new cube(4, 5, 6));  
-  m.add(new cylinder(10, 20));
-  m.print();
+  m1.add(new cube(4, 5, 6));  
+  m2.add(new cylinder(10, 20));
+  m1.print();
+  m2.print();
 }
