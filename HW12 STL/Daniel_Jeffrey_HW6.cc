@@ -1,7 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cmath>
 using namespace std;
+
+#if(__cplusplus == 202002L)
+    long double pi = std::numbers::pi;
+    #pragma message("using C++20")
+#else
+    long double pi = 3.14159265358979323846264338327950288419716939937510;
+    #pragma message("Using pre-C++20")
+#endif
 
 class BaseTriangle{
     public:
@@ -44,16 +53,49 @@ public:
 };
 
 class cylinder : public shape {
-private:
-    double r, h;
-public:
-    cylinder(double rad, double height) : r(rad), h(height){}
-    void print(ostream& os) const override{
-
-    }
-    friend ostream& operator << (ostream& os, const cylinder cyl){
-        return os << "radius= " << cyl.r << "\t\theight= " << cyl.h << endl;
-    }
+    private:
+        double r, h;
+        string name;
+    public:
+        cylinder(double rad, double height) : r(rad), h(height), name("cylinder"){
+            double side1x = x + r;
+            double side1y = y;
+            double side1z = z;
+            double side2x, side2y, side2z;
+            double dtheta = 0;  //angle of rotation
+            for(uint16_t i = 1; i <= 360; i++){
+                dtheta = (2 * pi *i)/360.0;
+                side2x = side1x * cos(dtheta) - side1z * sin(dtheta);
+                side2y = y;
+                side2z = side1x * sin(dtheta) - side1z * cos(dtheta);
+                //bottom triangle
+                list_of_base_triangles.push_back(BaseTriangle(x, y, z, side1x, side1y, side1z, side2x, side2y, side2z));
+                //middle rectangle (should be optimised in future)
+                list_of_base_triangles.push_back(BaseTriangle(side1x, side1y, side1z, side2x, side2y, side2z, side1x, side1y + h, side1z));
+                list_of_base_triangles.push_back(BaseTriangle(side1x, side1y + h, side1z, side2x, side2y + h, side2z, side2x, side2y, side2z));
+                //top triangle
+                list_of_base_triangles.push_back(BaseTriangle(x, y+h, z, side1x, side1y+h, side1z, side2x, side2y+h, side2z));
+                side1x = side2x;
+                side1y = side2y;
+                side1z = side2z;
+            }
+        }
+        void print(ostream& os) const override{
+            os << "solid " << name << "\n";
+            for(BaseTriangle bt : list_of_base_triangles){
+                os << "facet normal " << bt.n1 << "\t" << bt.n2 << "\t" << bt.n3 << "\n";
+                os << "\t" << "outer loop" << "\n";
+                os << "\t\t" << "vertex " << bt.x1 << "\t" << bt.y1 << "\t" << bt.z1 << "\n";
+                os << "\t\t" << "vertex " << bt.x2 << "\t" << bt.y2 << "\t" << bt.z2 << "\n";
+                os << "\t\t" << "vertex " << bt.x3 << "\t" << bt.y3 << "\t" << bt.z3 << "\n";
+                os << "\t" << "endloop" << "\n";
+                os << "endfacet" << "\n";
+            }
+            os << "endsolid " << name << "\n";
+        }
+        friend ostream& operator << (ostream& os, const cylinder cyl){
+            return os << "radius= " << cyl.r << "\t\theight= " << cyl.h << endl;
+        }
 };
 class cube : public shape {
     private:
@@ -125,12 +167,12 @@ public:
 int main() {
   cube c1(1,2,3);
   cout << c1;
-  //cylinder c2(10, 30);
-  //cout << c2;
+  cylinder c2(10, 30);
+  cout << c2;
 
   model m("test1.stl");
   // Don't do this: m.add(&c1);
-  m.add(new cube(4, 5, 6));
+  //m.add(new cube(4, 5, 6));  
+  m.add(new cylinder(10, 20));
   m.print();
-  //m.add(new cylinder(10, 20));
 }
