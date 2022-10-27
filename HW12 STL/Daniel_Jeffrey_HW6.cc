@@ -68,7 +68,7 @@ class cylinder : public shape {
         double r, h;
         string name;
     public:
-        cylinder(double rad, double height, uint16_t num_of_facets = 6) : r(rad), h(height), name("cylinder"){
+        cylinder(double rad, double height, uint16_t num_of_facets = 360) : r(rad), h(height), name("cylinder"){
             double side1x = x + r;
             double side1y = y;
             double side1z = z;
@@ -178,7 +178,7 @@ public:
 int main() {
   cube c1(1,2,3);
   cout << c1;
-  cylinder c2(10, 30, 12);
+  cylinder c2(10, 30);
   cout << c2;
 
   model m1("cube.stl");
