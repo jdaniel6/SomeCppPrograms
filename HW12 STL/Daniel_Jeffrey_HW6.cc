@@ -65,16 +65,16 @@ class cylinder : public shape {
             double dtheta = 0;  //angle of rotation
             for(uint16_t i = 1; i <= 360; i++){
                 dtheta = (2 * pi *i)/360.0;
-                side2x = side1x * cos(dtheta) - side1z * sin(dtheta);
-                side2y = y;
-                side2z = side1x * sin(dtheta) - side1z * cos(dtheta);
+                side2x = side1x * cos(dtheta) - side1y * sin(dtheta);
+                side2y = side1x * sin(dtheta) - side1z * cos(dtheta);
+                side2z = z;
                 //bottom triangle
                 list_of_base_triangles.push_back(BaseTriangle(x, y, z, side1x, side1y, side1z, side2x, side2y, side2z));
                 //middle rectangle (should be optimised in future)
-                list_of_base_triangles.push_back(BaseTriangle(side1x, side1y, side1z, side2x, side2y, side2z, side1x, side1y + h, side1z));
-                list_of_base_triangles.push_back(BaseTriangle(side1x, side1y + h, side1z, side2x, side2y + h, side2z, side2x, side2y, side2z));
+                list_of_base_triangles.push_back(BaseTriangle(side1x, side1y, side1z, side2x, side2y, side2z, side1x, side1y, side1z+h));
+                list_of_base_triangles.push_back(BaseTriangle(side1x, side1y, side1z+h, side2x, side2y, side2z+h, side2x, side2y, side2z));
                 //top triangle
-                list_of_base_triangles.push_back(BaseTriangle(x, y+h, z, side1x, side1y+h, side1z, side2x, side2y+h, side2z));
+                list_of_base_triangles.push_back(BaseTriangle(x, y, z+h, side1x, side1y, side1z+h, side2x, side2y, side2z+h));
                 side1x = side2x;
                 side1y = side2y;
                 side1z = side2z;
