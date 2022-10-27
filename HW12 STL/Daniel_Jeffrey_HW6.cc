@@ -130,7 +130,7 @@ int main() {
 
   model m("test1.stl");
   // Don't do this: m.add(&c1);
-  m.add(new cube(50, 50, 50));
+  m.add(new cube(4, 5, 6));
   m.print();
   //m.add(new cylinder(10, 20));
 }
