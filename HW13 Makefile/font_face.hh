@@ -9,7 +9,8 @@
 class font_face {
 private:
   std::vector<font> fonts;
+  std::string filename;
 public:
-  font_face(const char filename[]);
-  const font* get(const char faceName[], uint32_t size);
+  font_face(std::string filename);
+  const font* get(std::string facename, uint32_t size) const;
 };

@@ -4,15 +4,19 @@
 #include "font_face.hh"
 #include <string>
 #include <iostream>
+#include <iomanip>
+#include <fstream>
 
-font_face::font_face(const char filename[]) : filename(filename){
+
+font_face::font_face(std::string filename) : filename(filename){
     std::string fontPath = "fonts/fonts.conf";
-    std::cout << "FONT PATH = " << fontPath << endl;
-  string font_name;
+    std::cout << "FONT PATH = " << fontPath << std::endl;
+  std::string font_name;
   uint32_t min_font_size, max_font_size, step_size;
-  if (FT_Init_FreeType(&FontFace::ftLib))
+  FT_Library library;
+  if (FT_Init_FreeType(&library))
     throw "FT_Init_FreeType failed";
-  ifstream fontConf("fonts.conf");
+  std::ifstream fontConf("fonts.conf");
   fontConf >> font_name >> min_font_size >> step_size >> max_font_size;
   //for each size font 
   // add each font to your vector
@@ -23,6 +27,6 @@ font_face::font_face(const char filename[]) : filename(filename){
 }
 
 // return the nearest size font you have
-const font* font_face::get(uint32_t size) const  {
+const font* font_face::get(std::string facename, uint32_t size) const  {
   return nullptr; // TODO: fix this!
 }

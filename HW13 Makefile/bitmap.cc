@@ -1,14 +1,15 @@
-#include<iostream>
-#include<fstream>
-#include<string>
-#include<cstdint>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstdint>
 
 #include "bitmap.hh"
-#include "bound_box"
+#include "bound_box.hh"
 #include "color.hh"
 #include "font_face.hh"
 #include "font.hh"
 #include "glyph.hh"
+#include "encode.h"
 
 /*
 #include<>
@@ -33,9 +34,9 @@ uint32_t& bitmap::operator ()(uint32_t x, uint32_t y) {
      return pixels[y * w + x];
 }
 // readonly lookup a single pixel
-uint32_t bitmap::operator ()(uint32_t x, uint32_t y) const {
-     return pixels[y * w + x];
-}
+//uint32_t bitmap::operator ()(uint32_t x, uint32_t y) const {
+     //return pixels[y * w + x];
+//}
 
 // draw horizontal line from (x1,y) to (x2,y)
 // note this can be significantly faster than arbitrary diagonals
@@ -57,24 +58,24 @@ void bitmap::line(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2, color c){
 
 }
 
-void bitmap::rect(uint32_t x1, uint32_t y1, uint32_t w, uint32_t h, color c)){
+void bitmap::rect(uint32_t x1, uint32_t y1, uint32_t w, uint32_t h, color c){
 
 }
-void bitmap::fill_rect(uint32_t x1, uint32_t y1, uint32_t w, uint32_t h, color c)){
-
-}
-
-void bitmap::circle(uint32_t xc, uint32_t yc, uint32_t r, color c)){
-
-}
-void bitmap::fill_circle(uint32_t xc, uint32_t yc, uint32_t r, color c)){
+void bitmap::fill_rect(uint32_t x1, uint32_t y1, uint32_t w, uint32_t h, color c){
 
 }
 
-void bitmap::ellipse(uint32_t xc, uint32_t yc, uint32_t r, color c)){
+void bitmap::circle(uint32_t xc, uint32_t yc, uint32_t r, color c){
 
 }
-void bitmap::fill_ellipse(uint32_t xc, uint32_t yc, uint32_t rx, uint32_t ry, color c)){
+void bitmap::fill_circle(uint32_t xc, uint32_t yc, uint32_t r, color c){
+
+}
+
+void bitmap::ellipse(uint32_t xc, uint32_t yc, uint32_t r, color c){
+
+}
+void bitmap::fill_ellipse(uint32_t xc, uint32_t yc, uint32_t rx, uint32_t ry, color c){
 
 }
 void bitmap::grid(uint32_t x, uint32_t y, uint32_t dx, uint32_t dy, uint32_t num_rows,  uint32_t num_cols){
@@ -161,3 +162,12 @@ void bitmap::xycentered_text(uint32_t x, uint32_t y, uint32_t width, uint32_t he
 void bitmap::right_text(uint32_t x, uint32_t y, uint32_t width, const font* f, const char text[], uint32_t len){
 
 }
+// save the bitmap to a file
+void bitmap::save(std::string filename){
+     uint8_t* output;
+     size_t size = WebPEncodeLosslessRGBA((uint8_t*)pixels, w, h, 4 * w, &output);
+     std::ofstream os(filename, std::ios::binary);
+     os.write((char*)output, size);
+     WebPFree(output);
+}
+

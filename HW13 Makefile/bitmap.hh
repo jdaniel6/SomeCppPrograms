@@ -25,7 +25,7 @@ public:
   // read/write a single pixel
   uint32_t& operator ()(uint32_t x, uint32_t y);
   // readonly lookup a single pixel
-  uint32_t operator ()(uint32_t x, uint32_t y);
+  //uint32_t operator ()(uint32_t x, uint32_t y);
 
   // draw horizontal line from (x1,y) to (x2,y)
   // note this can be significantly faster than arbitrary diagonals
@@ -121,6 +121,9 @@ public:
   // right justified
   void right_text(uint32_t x, uint32_t y, uint32_t width,
             const font* f, const char text[], uint32_t len);
+
+  // save the bitmap to a file        
+  void save(std::string filename);
 
 };
 
