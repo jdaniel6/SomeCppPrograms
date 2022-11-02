@@ -87,8 +87,7 @@ void bitmap::fill_rect(uint32_t x1, uint32_t y1, uint32_t wid, uint32_t hei, col
      uint32_t x_end = ((x1 + wid) > w) ? w : (x1 + wid);
      for(uint32_t y_pos = y1; y_pos <= y_end; y_pos++){
           for(uint32_t x_pos = x1; x_pos <= x_end; x_pos++){
-               pixels[x_pos + y_pos * w] = c.getrgba(); 
-               std::cout << (x_pos + y_pos * w) << "\t";
+               pixels[x_pos + y_pos * w] = c.getrgba();
           }
           std::cout << "\n";
      }
@@ -173,7 +172,7 @@ void bitmap::text(uint32_t x, uint32_t y, const font* f, double val){
 
 // draw text with a fixed pixel limit. Return the number of characters drawn
 uint32_t bitmap::text(uint32_t x, uint32_t y, const font* f, const char text[], uint32_t len, uint32_t max_width){
-
+     return 0;
 }
 
 // draw text centered within a box of size width

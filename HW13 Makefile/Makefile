@@ -1,5 +1,3 @@
-
-
 OPT	:= #-O2
 DEBUG	:= -g
 CXX	:= g++ $(DEBUG) $(OPT)

@@ -1,5 +1,7 @@
 #include "color.hh"
 
+// was in Little Endian; converted to Big Endian
+
 color color::RED = {0xFF0000FF};
 color color::GREEN = {0xFF00FF00};
 color color::BLUE = {0xFFFF0000};
