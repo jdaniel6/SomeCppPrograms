@@ -1,25 +1,26 @@
+
+
 OPT	:= #-O2
 DEBUG	:= -g
 CXX	:= g++ $(DEBUG) $(OPT)
-LIBS	:= -lwebp -lfreetype
+LIBS := -lwebp -lfreetype
+
+
+INC	:= -I'C:\msys64\mingw64\include\freetype2\' -I'C:\msys64\mingw64\include\webp\'
+SRC := $(wildcard *.cc)
+OBJS := $(SRC:.cc=.o)
 
 # textformatter: textformatter.cc
 #	$(CXX) $< -o $@ -lwebp
 
 # these are the objects that make up the program
-OBJ	:= font.o font_face.o glyph.o color.o main.o
-testformatter: $(OBJ)
-	$(CXX) $(OBJ) -o $@ $(LIBS)
+all	: main
 
-font.o: font.cc font.hh
-	$(CXX) -c $<  # just compile and build the .o file
+main: $(OBJS)
+	$(CXX) $(OBJS) -o $@ $(LIBS)
 
-font_face.o: font_face.cc font_face.hh
-	$(CXX) -c $<  # just compile and build the .o file
+%.o: %.cc %.hh
+	$(CXX) -c $< -o $@ $(INC)
 
-glyph.o:
-
-color.o:
-
-main.o:
-	$(CXX) -c $<
+clean:
+	$(RM) -f *.o main

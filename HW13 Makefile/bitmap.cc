@@ -41,15 +41,32 @@ uint32_t& bitmap::operator ()(uint32_t x, uint32_t y) {
 // draw horizontal line from (x1,y) to (x2,y)
 // note this can be significantly faster than arbitrary diagonals
 void bitmap::horiz_line(uint32_t x1, uint32_t x2, uint32_t y, color c){
-  uint32_t start = x1 + y * w;
-  uint32_t end = x2 + y * w;
-  //TODO: now fill in the dots...
+     if(x1 > x2){
+          uint32_t temp = x2;
+          x2 = x1;
+          x1 = temp;
+     }
+     uint32_t start = x1 + y * w;
+     uint32_t end = x2 + y * w;
+     //TODO: now fill in the dots...
+     for(uint32_t pos = start; pos <= end; pos++){
+          pixels[pos] = c.getrgba();
+     }
 }
 
 // draw vertical line from (x,y1) to (x,y2)
 // note this can be significantly faster than arbitrary diagonals
 void bitmap::vert_line(uint32_t x, uint32_t y1, uint32_t y2, color c){
-
+     if(y1 > y2){
+          uint32_t temp = y2;
+          y2 = y1;
+          y1 = temp;
+     }
+     uint32_t start = x + y1 * w;
+     uint32_t end = x + y2 *w ;
+     for(uint32_t pos = start; pos <=end; pos+=w){
+          pixels[pos] = c.getrgba();
+     }
 }
 
 // draw an arbitrary diagonal line from (x1,y1) to (x2,y2) in color c
@@ -59,10 +76,22 @@ void bitmap::line(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2, color c){
 }
 
 void bitmap::rect(uint32_t x1, uint32_t y1, uint32_t w, uint32_t h, color c){
+     horiz_line(x1, x1 + w, y1, c);
+     vert_line(x1 + w, y1, y1 + h, c);
+     horiz_line(x1, x1 + w, y1 + h, c);
+     vert_line(x1, y1, y1 + h, c);
 
 }
-void bitmap::fill_rect(uint32_t x1, uint32_t y1, uint32_t w, uint32_t h, color c){
-
+void bitmap::fill_rect(uint32_t x1, uint32_t y1, uint32_t wid, uint32_t hei, color c){
+     uint32_t y_end = ((y1 + hei) > h) ? h : (y1 + hei);
+     uint32_t x_end = ((x1 + wid) > w) ? w : (x1 + wid);
+     for(uint32_t y_pos = y1; y_pos <= y_end; y_pos++){
+          for(uint32_t x_pos = x1; x_pos <= x_end; x_pos++){
+               pixels[x_pos + y_pos * w] = c.getrgba(); 
+               std::cout << (x_pos + y_pos * w) << "\t";
+          }
+          std::cout << "\n";
+     }
 }
 
 void bitmap::circle(uint32_t xc, uint32_t yc, uint32_t r, color c){

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <string>
 #include "font.hh"
 /**
  * Represent a family of fonts of different sizes

@@ -21,7 +21,7 @@
 // note: this function is not called, so it does not have to work!
 void test_text() {
   const font_face fonts("font.conf"); // load up different fonts(face, size)
-  const font* default = fonts.get("Helvetica", 20);
+  const font* def = fonts.get("Helvetica", 20);
   const font* big = fonts.get("Helvetica", 28);
   const font* small = fonts.get("Helvetica", 12);
   bitmap bm(512, 512);

@@ -82,14 +82,14 @@ public:
   // see Bresenham algorithm in wikipedia
   void line(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2, color c);
 
-  void rect(uint32_t x1, uint32_t y1, uint32_t w, uint32_t h, color c));
-  void fill_rect(uint32_t x1, uint32_t y1, uint32_t w, uint32_t h, color c));
+  void rect(uint32_t x1, uint32_t y1, uint32_t w, uint32_t h, color c);
+  void fill_rect(uint32_t x1, uint32_t y1, uint32_t w, uint32_t h, color c);
 
-  void circle(uint32_t xc, uint32_t yc, uint32_t r, color c));
-  void fill_circle(uint32_t xc, uint32_t yc, uint32_t r, color c));
+  void circle(uint32_t xc, uint32_t yc, uint32_t r, color c);
+  void fill_circle(uint32_t xc, uint32_t yc, uint32_t r, color c);
 
-  void ellipse(uint32_t xc, uint32_t yc, uint32_t r, color c));
-  void fill_ellipse(uint32_t xc, uint32_t yc, uint32_t rx, uint32_t ry, color c));
+  void ellipse(uint32_t xc, uint32_t yc, uint32_t r, color c);
+  void fill_ellipse(uint32_t xc, uint32_t yc, uint32_t rx, uint32_t ry, color c);
   void grid(uint32_t x, uint32_t y, uint32_t dx, uint32_t dy,
    uint32_t num_rows,  uint32_t num_cols);
   void gouraud(uint32_t x1, uint32_t y1, color c1,
