@@ -1,3 +1,18 @@
+/**
+ * @file bitmap.cc
+ * @author Jeffrey Daniel (jdaniel6@stevens.edu)
+ * @brief A program to work with bitmap objects and use Makefile
+ * @version 0.1
+ * @date 2022-11-09
+ * @ref https://stackoverflow.com/a/34427391 for linking and using makefile
+ * @ref https://developers.google.com/speed/webp/docs/api for working with WebP library
+ * @ref https://stackoverflow.com/questions/72079311/c-load-webp-file-into-array for help in writing the bitmap save function
+ * @ref https://www.digital-detective.net/understanding-big-and-little-endian-byte-order/ for debugging color.cc
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #include <iostream>
 #include <fstream>
 #include <string>
