@@ -23,6 +23,7 @@ class DynArray{
     public:   
         DynArray(uint64_t capacity);
         DynArray(const DynArray &oldArray);
+        DynArray(DynArray&& oldArray);
         ~DynArray();
         void add(T element);
         uint64_t length() const;
@@ -30,6 +31,7 @@ class DynArray{
         T* end();
         T operator[](uint64_t index) const;
         T& operator[](uint64_t index); 
+        T operator=(const T& orig);
         template <typename U> friend std::ostream& operator<<(std::ostream &os, const DynArray<U> &d);    
 };
 
@@ -67,6 +69,12 @@ DynArray<T>::DynArray(const DynArray &oldArray) : capacity(oldArray.capacity), l
     for(uint64_t pos = 0; pos < len; pos++){
         data[pos] = oldArray[pos];
     }
+}
+
+//Move constructor
+template <typename T>
+DynArray<T>::DynArray(DynArray&& oldArray) : data(oldArray.data), len(oldArray.len), capacity(oldArray.capacity) {
+    oldArray.data = nullptr;
 }
 
 //Destructor
@@ -110,6 +118,20 @@ T DynArray<T>::operator[](uint64_t index) const{
 template <typename T>
 T &DynArray<T>::operator[](uint64_t index){
     return data[index];
+}
+
+//= overloading
+template<typename T>
+T DynArray<T>::operator=(const T &orig){
+    if(&orig == this)
+        return;
+    delete [] data;
+    data = new int[orig.len];
+    len = orig.len;
+    for(uint64_t i = 0; i < orig.len; i++)
+        data[i] = orig[i];
+    
+
 }
 
 //<< overloading
