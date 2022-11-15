@@ -1,0 +1,29 @@
+function Quiz(){
+                var ta = document.createElement("textarea");
+                ta.setAttribute("method", "post");
+                ta.setAttribute("action", "submit.php");
+
+                <button onclick="addcc()">
+                    Add "add" function to the Quiz
+                </button>
+                
+                ta.textContent(id);
+
+                //form.append(ID);
+
+                //form.append(q1);
+
+                document.getElementsByTagName("body")[0].appendChild(ta);
+            }
+            function readfile() {
+                alert(document.getElementById('iframe').contentDocument.body.firstChild.innerHTML);
+            }
+            
+
+
+
+            if (text.style.display === "none") {
+                    text.style.display = "block";
+                } else {
+                    text.style.display = "none";
+                }
