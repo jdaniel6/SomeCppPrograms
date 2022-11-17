@@ -41,10 +41,10 @@ class Life{
 int main(){
     Life new_life;
     new_life.read("mylife.txt");
-    new_life.print();
-    for(uint8_t i = 0; i < 10; i++){
-        //new_life.print();
-        //new_life.get_next_gen();
+    //new_life.print();
+    for(uint8_t i = 0; i < 2; i++){
+        new_life.print();
+        new_life.get_next_gen();
     }
     //Life life2 = new_life;
     //life2 = new_life;
@@ -169,7 +169,7 @@ void Life::get_next_gen(){
     uint16_t* next_board = new uint16_t[rows*cols];
     for(uint64_t i = 0; i < rows; i++){
         for(uint64_t j = 0; j < cols; j++){
-            uint16_t current_state = board[i * cols + j];
+            uint16_t current_state = i * cols + j;
             uint16_t count = get_count_live_cells(i, j, current_state);
             if(current_state == 1){
                 if((count == 2) || (count == 3)){
@@ -189,7 +189,7 @@ void Life::get_next_gen(){
                     }
                 }
                 else{
-                    throw new Exception("InvalidDataException", __FILE__, __LINE__);
+                    //print nothing
                 }
             }
         }
@@ -212,6 +212,3 @@ void Life::print(){
         std::cout << "\n";
     }
 }
-
-
-//change to uint16_t
