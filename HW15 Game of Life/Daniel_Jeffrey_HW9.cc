@@ -1,6 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <string>
+
+#include "bitmap.hh"
+
 
 //Exception handling
 class Exception{
@@ -15,6 +19,7 @@ class Exception{
         }
 };
 
+Exception InvalidDataException("Read Invalid Data", __FILE__, __LINE__);
 
 class Life{
     private:
@@ -34,6 +39,7 @@ class Life{
         void get_next_gen();
         void get_gen(uint64_t generation_number);
         void print();
+        void draw(std::string filename);
         friend std::ostream& operator<<(std::ostream &os, const Life &life);
 };
 
@@ -41,13 +47,24 @@ class Life{
 int main(){
     Life new_life;
     new_life.read("mylife.txt");
-    //new_life.print();
-    for(uint8_t i = 0; i < 2; i++){
+    for(uint8_t i = 0; i < 11; i++){
         new_life.print();
+        std::string filename = "stages/stage" + std::to_string(i) + ".png";
+        new_life.draw(filename);
         new_life.get_next_gen();
     }
     //Life life2 = new_life;
     //life2 = new_life;
+    Life glider;
+    glider.read("glider.txt");
+    for(uint8_t i = 0; i < 11; i++){
+        std::cout << std::to_string(i);
+        glider.print();
+        std::string filename = "stages_glider/stage" + std::to_string(i) + ".png";
+        glider.draw(filename);
+        glider.get_next_gen();
+    }
+    
 }
 #if 0
 int main(){
@@ -171,7 +188,7 @@ void Life::get_next_gen(){
         for(uint64_t j = 0; j < cols; j++){
             uint16_t current_state = i * cols + j;
             uint16_t count = get_count_live_cells(i, j, current_state);
-            if(current_state == 1){
+            if(board[current_state] == 1){
                 if((count == 2) || (count == 3)){
                     next_board[current_state] = 1;
                 }
@@ -180,7 +197,7 @@ void Life::get_next_gen(){
                 }
             }
             else{
-                if(current_state == 0){
+                if(board[current_state] == 0){
                     if(count == 3){
                         next_board[current_state] = 1;
                     }
@@ -188,8 +205,8 @@ void Life::get_next_gen(){
                         next_board[current_state] = 0;
                     }
                 }
-                else{
-                    //print nothing
+                else{                    
+                    std::cout << InvalidDataException;
                 }
             }
         }
@@ -211,4 +228,35 @@ void Life::print(){
         }
         std::cout << "\n";
     }
+    std::cout << "\n";
+}
+
+//draw the board
+void Life::draw(std::string filename){
+    bitmap bm(512, 512);
+    //draw grid
+    uint64_t x_dist = bm.getw()/cols;   //the size of unit cell width
+    uint64_t y_dist = bm.geth()/rows;   //the size of unit cell height
+
+    //if location is 1: draw a yellow rectangle, otherwise BLACK
+    for(uint64_t i = 0; i < rows; i++){
+        for(uint64_t j = 0; j < cols; j++){
+            if(board[i * cols + j]){
+                bm.fill_rect(j * x_dist, i * y_dist, x_dist, y_dist, color::YELLOW);
+            }
+            else{
+                bm.fill_rect(j * x_dist, i * y_dist, x_dist, y_dist, color::BLUE);
+            }
+        }
+    }
+        
+    for(uint32_t pos = 1; pos < cols; pos++){       //draw vertical lines to indicate columns
+        bm.vert_line(pos * x_dist, 0, bm.geth(), color::RED);
+    }
+    for(uint32_t pos = 1; pos < rows; pos++){       //draw horizontal lines to indicate rows
+        bm.horiz_line(0, bm.getw(), pos * y_dist, color::RED);
+    }
+
+    bm.save(filename);
+    
 }
