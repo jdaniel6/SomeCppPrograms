@@ -48,4 +48,7 @@ int main(){
     }
     a.add(101);
     std::cout << a;
+    DynArray<int> b(100);
+    b = a;
+    std::cout << b;
 }

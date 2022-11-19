@@ -31,7 +31,7 @@ class DynArray{
         T* end();
         T operator[](uint64_t index) const;
         T& operator[](uint64_t index); 
-        T operator=(const T& orig);
+        DynArray<T> operator=(const DynArray<T>& orig);
         template <typename U> friend std::ostream& operator<<(std::ostream &os, const DynArray<U> &d);    
 };
 
@@ -122,16 +122,18 @@ T &DynArray<T>::operator[](uint64_t index){
 
 //= overloading
 template<typename T>
-T DynArray<T>::operator=(const T &orig){
+DynArray<T> DynArray<T>::operator=(const DynArray<T> &orig){
     if(&orig == this)
-        return;
-    delete [] data;
-    data = new int[orig.len];
-    len = orig.len;
-    for(uint64_t i = 0; i < orig.len; i++)
-        data[i] = orig[i];
-    
-
+        return orig;
+    else{
+        delete [] data;
+        capacity = orig.capacity;
+        len = orig.len;
+        data = new T[capacity];
+        for(uint64_t i = 0; i < len; i++)
+            data[i] = orig[i];
+        return *this; 
+    }    
 }
 
 //<< overloading
