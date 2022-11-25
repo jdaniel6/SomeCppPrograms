@@ -39,7 +39,8 @@ class BadDynArray{
         }
         friend std::ostream &operator<<(std::ostream &os, const BadDynArray &list){
             for (int i = 0; i < list.len*sizeof(T); i+=sizeof(T)){      // (CHANGED) needed to jump by sizeof(T)
-                os << (T)(list.data[i]) << '\t';        // (CHANGED) list.data[i] points to a char stream; needs to explicitly be cast to type
+                //os << (T)(list.data[i]) << '\t';        // (CHANGED) list.data[i] points to a char stream; needs to explicitly be cast to type
+                os << *(T*)(&list.data[i]) << '\t';
             }
             return os;
         }
