@@ -1,6 +1,6 @@
 /**
  * @file Daniel_Jeffrey_HW10.cc
- * @author Jeffrey Daniel(jdaniel6@stecens.edu)
+ * @author Jeffrey Daniel(jdaniel6@stevens.edu)
  * @brief A program to implement a templated DynArray
  * @version 0.1
  * @date 2022-11-25
